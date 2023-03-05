@@ -1,38 +1,31 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import championsService from "../services/champions"
+import ChampionCard from "./ChampionCard"
 
 import ScoreCard from "./ScoreCard"
 import {
-  Spinner,
   Text,
   Flex,
   Container,
   Box,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure,
-  Button,
   Heading,
+  Center,
+  useBreakpointValue,
 } from "@chakra-ui/react"
-
-import { Select } from "chakra-react-select"
 
 const HigherLower = () => {
   const [champions, setChampions] = useState()
   const [champion, setChampion] = useState()
   const [champion2, setChampion2] = useState()
-
-  const [guess, setGuess] = useState("")
+  const [showSkinsLength, setShowSkinsLength] = useState(false)
+  const [showSkinsLength2, setShowSkinsLength2] = useState(false)
 
   const [score, setScore] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [options, setOptions] = useState([])
 
+  //flex direction column on phones and row on other devices
+  const direction = useBreakpointValue({ base: "column", md: "row" })
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const getAllChampions = async () => {
@@ -40,12 +33,6 @@ const HigherLower = () => {
       setLoading(true)
       const response = await championsService.getChampions()
       setChampions(response)
-      setOptions(
-        response.map((champion) => ({
-          value: champion.name,
-          label: champion.name,
-        }))
-      )
       setLoading(false)
     } catch (e) {
       console.log(e)
@@ -83,30 +70,40 @@ const HigherLower = () => {
     }
   }, [champions])
 
-  //   const gameOver = () => {
-  //     if (guessesLeft <= 1) {
-  //       onOpen()
-  //       return true
-  //     }
-  //   }
+  const gameOver = () => {
+    onOpen()
+  }
+
+  const getChampionsByScore = () => {
+    if (score % 2 === 0) {
+      getChampion()
+      setShowSkinsLength(false)
+      setShowSkinsLength2(true)
+    } else {
+      getChampion2()
+      setShowSkinsLength2(false)
+      setShowSkinsLength(true)
+    }
+  }
 
   const checkAnswer = (champ) => {
-    console.log(champ.skins.length)
-
     if (champ === champion) {
       if (champ.skins.length >= champion2.skins.length) {
-        console.log("correct")
         setScore(score + 1)
-        getChampion2()
+        setShowSkinsLength(true)
+        getChampionsByScore()
+      } else {
+        gameOver()
       }
     } else if (champ === champion2) {
+      console.log("test")
       if (champ.skins.length >= champion.skins.length) {
-        console.log("correct")
+        setShowSkinsLength2(true)
         setScore(score + 1)
-        getChampion()
+        getChampionsByScore()
+      } else {
+        gameOver()
       }
-    } else {
-      console.log("wrong")
     }
   }
 
@@ -114,29 +111,42 @@ const HigherLower = () => {
     setScore(0)
     getChampion()
     getChampion2()
+    setShowSkinsLength(false)
+    setShowSkinsLength2(false)
     onClose()
   }
 
-  const answer = () => {}
   return (
-    <Box>
-      <Heading>Higher/lower</Heading>
-      <Container maxW="container.md" px="10">
+    <Box overflow="hidden">
+      <Heading align="center" as="h2" size="lg">
+        Guess which champion has more skins
+      </Heading>
+      <Container maxW="container.md" px="10" overflow="hidden">
         <Box>
-          <Text fontSize="xl" fontWeight="bold" align="center">
+          <Text py="5" fontSize="xl" fontWeight="bold" align="center">
             Score: {score}
           </Text>
 
           {champion && champion2 && !loading ? (
             <>
-              <Flex direction="row">
-                <Box px="5" onClick={() => checkAnswer(champion)}>
-                  <Text fontWeight="bold">{champion.name}</Text>
-                </Box>
-                <Box px="5" onClick={() => checkAnswer(champion2)}>
-                  <Text fontWeight="bold">{champion2.name}</Text>
-                </Box>
-              </Flex>
+              <Center>
+                <Flex direction={direction}>
+                  <Container my="3">
+                    <ChampionCard
+                      champion={champion}
+                      checkAnswer={() => checkAnswer(champion)}
+                      showSkinsLength={showSkinsLength}
+                    />
+                  </Container>
+                  <Container my="3">
+                    <ChampionCard
+                      champion={champion2}
+                      checkAnswer={() => checkAnswer(champion2)}
+                      showSkinsLength={showSkinsLength2}
+                    />
+                  </Container>
+                </Flex>
+              </Center>
             </>
           ) : (
             <Text></Text>

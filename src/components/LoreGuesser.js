@@ -5,18 +5,9 @@ import ScoreCard from "./ScoreCard"
 import {
   Spinner,
   Text,
-  Flex,
   Container,
   Box,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure,
-  Button,
   Heading,
 } from "@chakra-ui/react"
 
@@ -114,7 +105,7 @@ const LoreGuesser = () => {
   }
   return (
     <Box>
-      <Container maxW="container.md" px="10">
+      <Container maxW="container.md" px="10" h="lg">
         <Box>
           <Heading align="center" as="h2" size="lg">
             Guess the champion from lore

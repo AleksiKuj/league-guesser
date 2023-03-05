@@ -1,26 +1,10 @@
-import {
-  Spinner,
-  Text,
-  Flex,
-  Container,
-  Box,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-  Link,
-} from "@chakra-ui/react"
+import { Box, Link } from "@chakra-ui/react"
 
 import { Link as RouteLink } from "react-router-dom"
 
 const Nav = () => {
   return (
-    <Box>
+    <Box align="center">
       <Link as={RouteLink} to="/">
         Lore Guesser
       </Link>
