@@ -14,6 +14,9 @@ const Nav = () => {
             <Link as={RouteLink} to="/higherlower">
               Higher or Lower
             </Link>
+            <Link as={RouteLink} to="/colorguesser">
+              Color Guesser
+            </Link>
           </HStack>
         </Flex>
       </HStack>

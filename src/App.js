@@ -2,6 +2,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import HigherLower from "./components/HigherLower"
 import LoreGuesser from "./components/LoreGuesser"
+import ColorGuesser from "./components/ColorGuesser"
 import Nav from "./components/Nav"
 import { Routes, BrowserRouter as Router, Route } from "react-router-dom"
 
@@ -18,7 +19,6 @@ function App() {
       direction={"column"}
       minH="100vh"
       maxW="100vw"
-      overflow="hidden"
       bgGradient="linear-gradient(to right, #091438,leagueBlue.600, leagueBlue.700)"
       color="white"
     >
@@ -29,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LoreGuesser />} />
             <Route path="/higherlower" element={<HigherLower />} />
+            <Route path="/colorguesser" element={<ColorGuesser />} />
           </Routes>
         </Router>
       </Flex>

@@ -20,6 +20,9 @@ const ChampionCard = ({ champion, checkAnswer, showSkinsLength }) => {
       overflow="hidden"
       bg="transparent"
       p="0"
+      _hover={{
+        cursor: "pointer",
+      }}
     >
       <CardBody position="relative" p="0">
         <Box
@@ -34,14 +37,10 @@ const ChampionCard = ({ champion, checkAnswer, showSkinsLength }) => {
         ></Box>
         {isLoading && <Spinner />}
 
-        <Fade
-          in={!isLoading}
-          initialScale={0.5}
-          transition={{ enter: { duration: 1 } }}
-        >
+        <Fade in={!isLoading} transition={{ enter: { duration: 1 } }}>
           <Image
             key={champion.id}
-            src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg`}
+            src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg`}
             alt={champion.name}
             borderRadius="lg"
             onLoad={() => {
@@ -61,8 +60,7 @@ const ChampionCard = ({ champion, checkAnswer, showSkinsLength }) => {
           transform="translate(-50%, -50%)"
           textAlign="center"
           color="white"
-          fontWeight="bold"
-          textShadow="1px 1px black"
+          fontWeight="semibold"
         >
           <Box
             bg="white"
@@ -72,6 +70,7 @@ const ChampionCard = ({ champion, checkAnswer, showSkinsLength }) => {
             borderRight={"3px solid black"}
             borderTop={"2px solid black"}
             borderLeft={"2px solid black"}
+            fontSize="lg"
           >
             <Text>{champion.name}</Text>
             <Text>{showSkinsLength ? champion.skins.length : null}</Text>

@@ -18,7 +18,7 @@ const LoreGuesser = () => {
   const [champion, setChampion] = useState()
 
   const [guess, setGuess] = useState("")
-  const [guessesLeft, setGuessesLeft] = useState(5)
+  const [guessesLeft, setGuessesLeft] = useState(3)
 
   const [score, setScore] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -95,7 +95,7 @@ const LoreGuesser = () => {
 
   const restartGame = () => {
     setScore(0)
-    setGuessesLeft(5)
+    setGuessesLeft(3)
     getChampion()
     onClose()
   }
@@ -131,15 +131,16 @@ const LoreGuesser = () => {
             <Spinner size="xl" color="red.500" />
           )}
         </Box>
-        <Box color="leagueGrey.600">
+        <Box color="black" bg="white">
           <Select
             value={guess}
             onChange={handleChampionChange}
             options={options}
+            colorScheme="cyan"
           />
         </Box>
         <Text fontSize="sm" color="gray.500">
-          Remember you have only 5 tries per round.
+          Remember you have only 3 tries per round.
         </Text>
       </Container>
       {champion ? (
@@ -148,6 +149,7 @@ const LoreGuesser = () => {
           isOpen={isOpen}
           onClose={onClose}
           restartGame={restartGame}
+          champion={champion}
         />
       ) : null}
     </Box>

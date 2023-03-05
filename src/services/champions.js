@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const baseUrl =
-  "http://ddragon.leagueoflegends.com/cdn/13.4.1/data/en_US/champion"
+  "https://ddragon.leagueoflegends.com/cdn/13.4.1/data/en_US/champion"
 
 const getChampions = async () => {
   try {
