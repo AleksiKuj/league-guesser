@@ -273,7 +273,7 @@ const ColorGuesser = () => {
                 id="champion-image"
                 crossOrigin="anonymous"
                 display="none"
-                src={`http://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/${champion.id}.png`}
+                src={`https://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/${champion.id}.png`}
               />
             )}
           </Container>
