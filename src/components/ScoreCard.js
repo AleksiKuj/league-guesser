@@ -16,14 +16,19 @@ const ScoreCard = ({ score, isOpen, onClose, restartGame }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent textAlign="center" bg="leagueGold.200">
         <ModalHeader>You got {score} correct</ModalHeader>
         <ModalBody>
           <Text count={2}>Better luck next time!</Text>
         </ModalBody>
         <Center>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={restartGame}>
+            <Button
+              bg="leagueBlue.500"
+              color="white"
+              mr={3}
+              onClick={restartGame}
+            >
               Restart
             </Button>
           </ModalFooter>

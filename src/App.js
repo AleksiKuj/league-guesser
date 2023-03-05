@@ -10,10 +10,18 @@ import { Flex } from "@chakra-ui/react"
 //http://ddragon.leagueoflegends.com/cdn/13.4.1/data/en_US/champion/Aatrox.json
 //http://ddragon.leagueoflegends.com/cdn/13.4.1/data/en_US/champion.json
 //http://ddragon.leagueoflegends.com/cdn/13.4.1/img/champion/Aatrox.png
+//https://brand.riotgames.com/en-us/league-of-legends/typography
 
 function App() {
   return (
-    <Flex direction={"column"} minH="100vh" maxW="100vw" overflow="hidden">
+    <Flex
+      direction={"column"}
+      minH="100vh"
+      maxW="100vw"
+      overflow="hidden"
+      bgGradient="linear-gradient(to right, #091438,leagueBlue.600, leagueBlue.700)"
+      color="white"
+    >
       <Flex direction={"column"} grow="1">
         <Header />
         <Router>

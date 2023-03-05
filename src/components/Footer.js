@@ -1,8 +1,16 @@
-import { Box, Text } from "@chakra-ui/react"
+import { Box, Link } from "@chakra-ui/react"
+import { ExternalLinkIcon } from "@chakra-ui/icons"
 const Footer = () => {
   return (
-    <Box bg="tomato" mt="5" py="5" align="center">
-      <Text>Footer</Text>
+    <Box
+      bgGradient="linear-gradient(to right, leagueGold.500, leagueGold.400)"
+      mt="5"
+      py="5"
+      align="center"
+    >
+      <Link href="https://github.com/AleksiKuj" target="_blank">
+        My GitHub <ExternalLinkIcon mx="2px" />
+      </Link>
     </Box>
   )
 }

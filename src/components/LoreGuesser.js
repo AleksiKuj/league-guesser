@@ -71,7 +71,6 @@ const LoreGuesser = () => {
   }
 
   const checkAnswer = (e) => {
-    console.log(e.value)
     if (e.value.toLowerCase() === champion.name.toLowerCase()) {
       console.log("correct")
       setScore(score + 1)
@@ -88,12 +87,9 @@ const LoreGuesser = () => {
 
   const handleChampionChange = (e) => {
     const optionExists = options.some((option) => option.value === e.value)
-
     if (optionExists) {
       setGuess(e.value)
       checkAnswer(e)
-    } else {
-      console.log("not exist")
     }
   }
 
@@ -103,6 +99,7 @@ const LoreGuesser = () => {
     getChampion()
     onClose()
   }
+
   return (
     <Box>
       <Container maxW="container.md" px="10" h="lg">
@@ -119,7 +116,6 @@ const LoreGuesser = () => {
 
           {champion && !loading ? (
             <>
-              <Text>{champion.name}</Text>
               {/* setInnerHTML makes <i>tags work</i> */}
               <Text
                 dangerouslySetInnerHTML={{
@@ -135,11 +131,13 @@ const LoreGuesser = () => {
             <Spinner size="xl" color="red.500" />
           )}
         </Box>
-        <Select
-          value={guess}
-          onChange={handleChampionChange}
-          options={options}
-        />
+        <Box color="leagueGrey.600">
+          <Select
+            value={guess}
+            onChange={handleChampionChange}
+            options={options}
+          />
+        </Box>
         <Text fontSize="sm" color="gray.500">
           Remember you have only 5 tries per round.
         </Text>

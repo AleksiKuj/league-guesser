@@ -13,8 +13,15 @@ const ChampionCard = ({ champion, checkAnswer, showSkinsLength }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   return (
-    <Card maxW="md" onClick={checkAnswer} minH="600px" overflow="hidden">
-      <CardBody position="relative">
+    <Card
+      maxW="md"
+      onClick={checkAnswer}
+      minH="560px"
+      overflow="hidden"
+      bg="transparent"
+      p="0"
+    >
+      <CardBody position="relative" p="0">
         <Box
           position="absolute"
           top="0"

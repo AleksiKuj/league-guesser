@@ -1,16 +1,22 @@
-import { Box, Link } from "@chakra-ui/react"
+import { Box, Flex, HStack, Link } from "@chakra-ui/react"
 
 import { Link as RouteLink } from "react-router-dom"
 
 const Nav = () => {
   return (
-    <Box align="center">
-      <Link as={RouteLink} to="/">
-        Lore Guesser
-      </Link>
-      <Link as={RouteLink} to="/higherlower">
-        Higher or Lower
-      </Link>
+    <Box py="5">
+      <HStack spacing="10" justify="space-between">
+        <Flex justify="center" flex="1">
+          <HStack spacing="5">
+            <Link as={RouteLink} to="/">
+              Lore Guesser
+            </Link>
+            <Link as={RouteLink} to="/higherlower">
+              Higher or Lower
+            </Link>
+          </HStack>
+        </Flex>
+      </HStack>
     </Box>
   )
 }
